@@ -1,5 +1,9 @@
 # E-CommerceApp
-Building a fully-fledged out E-commerce web application utilizing ReactJS
+A professional and scalable E-Commerce web application built by React.
 
-## Updates
-8/22/2019: Initialized project - set up homepage component
+## Technologies utilized:
+1. ReactJS (Hooks, ContextAPI, Suspense, React Lazy)
+2. Firebase (User authentication)
+3. GraphQL
+4. Redux
+
