@@ -1,7 +1,7 @@
 # E-CommerceApp
 A professional and scalable E-Commerce web application built with React.
 
-# ~UPCOMING FEATURES~
+# UPCOMING FEATURES
 1. Firebase DB
 2. User auth
 
