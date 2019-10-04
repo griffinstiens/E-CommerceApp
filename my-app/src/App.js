@@ -11,20 +11,24 @@ class App extends React.Component {
   constructor() {
     super();
 
+    //storing state of user in APP so we can pass it into components that will need access to it
+
     this.state = {
       currentUser: null
     }
   }
-
+  //method by default equal to null
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    //parameter is state of user -- opens subscription
     this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
       this.setState({ currentUser: user});
-
+      console.log(user);
     });
   }
 
+  //closes subscription
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
@@ -32,12 +36,12 @@ class App extends React.Component {
   render(){
     return (
       <div>
-      <Header />
-      <Switch>
-       <Route exact path='/' component={HomePage} />
-       <Route path='/shop' component={ShopPage} />
-       <Route path='/signin' component={SignInAndSignUpPage} />
-      </Switch>
+        <Header currentUser={this.state.currentUser} />
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route path='/shop' component={ShopPage} />
+            <Route path='/signin' component={SignInAndSignUpPage} />
+          </Switch>
       </div>
     );
   }
