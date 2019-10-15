@@ -17,6 +17,7 @@
     "redux-persist": "^6.0.0",
     "reselect": "^4.0.0"
   },
+  "homepage": "https://griffinstiens.me/pages/E-CommerceApp/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

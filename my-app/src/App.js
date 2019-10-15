@@ -11,16 +11,17 @@ import Header from './components/header/header.component.jsx';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selector';
 import { createStructuredSelector } from 'reselect';
+
 class App extends React.Component {
   
   //method by default equal to null
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-
-
+    
     const { setCurrentUser } = this.props;
     //parameter is state of user -- opens subscription
+    //using auth library from firebase, we listen for any changes on state, pass userAuth object
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
 
@@ -31,6 +32,7 @@ class App extends React.Component {
         if a document exists at this query using the .exists property which returns a boolean. We can also get the actual properties on
         the object by calling the .data() method, which returns a JSON object of the document
         */
+       //whenever snapobject changes, pass snapshot into setCurrentUser redux method to set currentUser object
         userRef.onSnapshot(snapshot => {
           setCurrentUser({
             id: snapshot.id,
@@ -64,7 +66,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector ({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 })
 
 const mapDispatchToProps = dispatch => ({
