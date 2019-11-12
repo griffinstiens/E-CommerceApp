@@ -15,9 +15,9 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "styled-components": "^4.4.1"
   },
-  "homepage": "https://griffinstiens.me/pages/E-CommerceApp/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

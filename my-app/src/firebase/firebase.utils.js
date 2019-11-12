@@ -12,6 +12,9 @@ const config = {
     appId: "1:429963388380:web:a229c798a9d3a878"
   };
 
+  //initializing firebase, auth, firestore
+  firebase.initializeApp(config);
+
   /* 
     With a query, Firestore returns two types of objects: references and snapshots. Of these objects, they can either be
     Document or Collection versions.
@@ -41,7 +44,7 @@ const config = {
           email,
           createdAt,
           ...additionalData
-        })
+        });
       } catch (error) {
           console.log("Error creating user: ", error.message);
       }
@@ -66,9 +69,24 @@ const config = {
     return await batch.commit();
   }
 
+  export const convertCollectionsSnapshotToMap = collections => {
+    const transformedCollection = collections.docs.map(doc => {
+      const { title, items } = doc.data();
 
-  //initializing firebase, auth, firestore
-  firebase.initializeApp(config);
+      return {
+        routeName: encodeURI(title.toLowerCase()),
+        id: doc.id,
+        title,
+        items
+      }
+    });
+
+    return transformedCollection.reduce((accumulator, collection) => {
+      accumulator[collection.title.toLowerCase()] = collection;
+      return accumulator;
+    }, {});
+  }
+
   export const auth = firebase.auth();
   export const firestore = firebase.firestore();
 
